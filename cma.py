@@ -2,36 +2,91 @@
 import click
 from cont_mem_algos import first_fit, best_fit, worst_fit
 
-@click.command()
-@click.option('--memmap', help='file with the memory description')
-@click.option('--req', help='requirement file')
-@click.option('--pos', help='initial position')
-
 def print_memory_map(memory_map):
     for memory in memory_map:
         print(f"({memory[0]:#0{8}x}, {memory[1]:#0{8}x})")
 
-def process():
-    memory = [(0x06D01000, 0x00500000),
-              (0x06100C00, 0x00C00000),
-              (0x05200400, 0x00F00000),
-              (0x04800000, 0x00A00000),
-              (0x01E00000, 0x00400000),
-              (0x02500000, 0x01400000),
-              (0x07201800, 0x01200000),
-              (0x08402C00, 0x00700000)]
-    first_pos = 0
+def read_reqs_file(reqs_filename):
+    result = []
+    try:
+        with open(reqs_filename, 'r') as reqsfile:
+            for line in reqsfile:
+                req = int(line.strip(),16)
+                result.append(req)
+    except FileNotFoundError:
+        print(f'File not found {reqs_filename}', file=sys.stderr)
+        return None
+    else:
+        return result
 
-    requirements = [0x00C00000, 0x00A00000, 0x00B00000]
+def read_memmap_file(memmap_filename):
+    result = []
+    try:
+        with open(memmap_filename, 'r') as mmfile:
+            for line in mmfile:
+                elems = line.strip().split()
+                result.append((int(elems[0],16), int(elems[1],16)))
+    except FileNotFoundError:
+        print(f'File not found {memmap_filename}', file=sys.stderr)
+        return None
+    else:
+        return result
+
+def cmas(algo_str):
+    if algo_str == 'all':
+        return [
+            {"name" : "First fit",
+             "function" : first_fit },
+            {"name" : "Best fit",
+             "function" : best_fit },
+            {"name" : "Worst fit",
+             "function" : worst_fit},
+        ]
+    elif algo_str == 'first':
+        return [
+            {"name" : "First fit",
+             "function" : first_fit },
+        ]
+    elif algo_str == 'best':
+        return [
+            {"name" : "Best fit",
+             "function" : best_fit },
+        ]
+    elif algo_str == 'worst':
+        return [
+            {"name" : "First fit",
+             "function" : first_fit },
+            {"name" : "Best fit",
+             "function" : best_fit },
+            {"name" : "Worst fit",
+             "function" : worst_fit},
+        ]
+    else:
+        return None
+
+@click.command()
+@click.option('--memmap', help='file with the memory description')
+@click.option('--reqs', help='requirement file')
+@click.option('--function', default='all', help='Algorithm to Execute: first, best, worst, all')
+@click.option('--pos', default=0, help='initial position')
+def process(memmap, reqs, function, pos):
+    memory = read_memmap_file(memmap)
+    requirements = read_reqs_file(reqs)
+    cont_mem_algo = cmas(function)
+    if memory == None or requirements == None or cont_mem_algo == None:
+        return
+
+    first_pos = pos
+    
     work_memory = memory[:]
-    cont_mem_algo = [
-        {"name" : "First fit",
-         "function" : first_fit },
-        {"name" : "Best fit",
-         "function" : best_fit },
-        {"name" : "Worst fit",
-         "function" : worst_fit},
-    ]
+    # cont_mem_algo = [
+    #     {"name" : "First fit",
+    #      "function" : first_fit },
+    #     {"name" : "Best fit",
+    #      "function" : best_fit },
+    #     {"name" : "Worst fit",
+    #      "function" : worst_fit},
+    # ]
 
     for cmae in cont_mem_algo:
 
