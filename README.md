@@ -27,18 +27,18 @@ with your directory path.
 Linux
 
 ```shell
-$ export PYTHONPATH=$PYTHONPATH:<path-of-your-project>
+export PYTHONPATH=$PYTHONPATH:<path-of-your-project>
 ```
 
 Windows
 
 ```shell
-> PYTHONPATH=%PYTHONPATH%;<path-of-your-project>
+PYTHONPATH=%PYTHONPATH%;<path-of-your-project>
 ```
 
 Running the test, replace with the name of your algorithm implementation: `first`, `best`, `worst`.
 
 ```shell
-$ python3 -m unittest test/test_basic_<your_algorithm>_fit.py
+python3 -m unittest test/test_basic_<your_algorithm>_fit.py
 ```
 
