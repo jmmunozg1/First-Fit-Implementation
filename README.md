@@ -61,9 +61,55 @@ python -p pip install click
 To run the program
 
 ```shell
-python3 --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
+python3 cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
 ```
 
 ```shell
-python --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
+python cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
 ```
+
+The previous execution executes all algorithms you can change to execute different algorithm.
+
+### To execute the first algorithm.
+
+```shell
+python3 cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function first
+```
+
+```shell
+python cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function first
+```
+
+### To execute the best algorithm.
+
+```shell
+python3 cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function best
+```
+
+```shell
+python cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function best
+```
+
+### To execute the worst algorithm.
+
+```shell
+python3 cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function worst
+```
+
+```shell
+python cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --function worst
+```
+
+### To execute in different possition
+
+```shell
+python3 cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --pos 3
+```
+
+```shell
+python cma.py --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt --pos 3
+```
+
+
+
+
