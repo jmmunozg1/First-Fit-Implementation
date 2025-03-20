@@ -19,7 +19,7 @@ request cannot be fulfilled, or a quadruple:
    * `index`: an index on the `mem_avail` where the request was found. If the
      memory were exhausted, the next valid position would be available.
 
-# Test
+## Test
 
 First, set the `PYTHONPATH` variable replace (`<path-of-your-project`)
 with your directory path.
@@ -33,7 +33,7 @@ export PYTHONPATH=$PYTHONPATH:<path-of-your-project>
 Windows
 
 ```shell
-PYTHONPATH=%PYTHONPATH%;<path-of-your-project>
+SET PYTHONPATH=%PYTHONPATH%;<path-of-your-project>
 ```
 
 Running the test, replace with the name of your algorithm implementation: `first`, `best`, `worst`.
@@ -42,3 +42,28 @@ Running the test, replace with the name of your algorithm implementation: `first
 python3 -m unittest test/test_basic_<your_algorithm>_fit.py
 ```
 
+```shell
+python -m unittest test/test_basic_<your_algorithm>_fit.py
+```
+
+## Execute cma simulator
+
+First install click
+
+```shell
+python3 -m pip install click
+```
+
+```shell
+python -p pip install click
+```
+
+To run the program
+
+```shell
+python3 --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
+```
+
+```shell
+python --memmap .\resources\memmap\memmap_1.txt --reqs .\resources\reqs\req_1.txt
+```
