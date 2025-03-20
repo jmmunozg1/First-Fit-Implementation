@@ -79,14 +79,6 @@ def process(memmap, reqs, function, pos):
     first_pos = pos
     
     work_memory = memory[:]
-    # cont_mem_algo = [
-    #     {"name" : "First fit",
-    #      "function" : first_fit },
-    #     {"name" : "Best fit",
-    #      "function" : best_fit },
-    #     {"name" : "Worst fit",
-    #      "function" : worst_fit},
-    # ]
 
     for cmae in cont_mem_algo:
 
