@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import click
-from cont_mem_algos import first_fit, best_fit, worst_fit
+from cont_mem_algos import first_fit
+import sys
 
 def print_memory_map(memory_map):
     for memory in memory_map:
