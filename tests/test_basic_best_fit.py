@@ -2,7 +2,7 @@
 import unittest
 from cont_mem_algos import best_fit
 
-class TestBasicFirstFit(unittest.TestCase):
+class TestBasicBestFit(unittest.TestCase):
 
     def test_pass_empty_map(self):
         work_memory = []
